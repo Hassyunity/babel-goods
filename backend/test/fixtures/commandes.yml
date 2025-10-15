@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  article: one
+  nom_personne: MyString
+  adresse_livraison: MyString
+  province: MyString
+  prix: 9.99
+  telephone: MyString
+  etat: MyString
+  remarque: MyText
+
+two:
+  article: two
+  nom_personne: MyString
+  adresse_livraison: MyString
+  province: MyString
+  prix: 9.99
+  telephone: MyString
+  etat: MyString
+  remarque: MyText
