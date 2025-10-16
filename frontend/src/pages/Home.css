@@ -1,0 +1,51 @@
+.home-container {
+  margin: 15px; /* marge générale autour du contenu */
+}
+
+/* === SECTION BANNIÈRE === */
+.brand-banner {
+  position: relative;
+  height: 50vh; /* moitié de l’écran */
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 15px; /* marges gauche/droite */
+}
+
+.brand-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* remplit le cadre sans déformation */
+  border-radius: 12px;
+}
+
+/* === OVERLAY (texte sur l’image) === */
+.banner-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #1e1e1e;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.banner-overlay h1 {
+  font-size: 2rem;
+  color: #facc15;
+  margin-bottom: 0.5rem;
+}
+
+.banner-overlay p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* === CONTENU EN DESSOUS === */
+.home-content {
+  margin-top: 2rem;
+  text-align: center;
+}

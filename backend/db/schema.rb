@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_16_212740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -37,6 +37,30 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_commandes_on_article_id"
+  end
+
+  create_table "expeditions", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extras", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "publicites", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

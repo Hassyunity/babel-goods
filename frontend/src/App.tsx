@@ -1,11 +1,19 @@
-import TestCommandes from "./components/TestCommandes";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Commandes from "./pages/Commandes";
 
 function App() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Frontend React + TypeScript + Rails API 🚀</h1>
-      <TestCommandes />
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <div style={{ padding: "2rem" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/commandes" element={<Commandes />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

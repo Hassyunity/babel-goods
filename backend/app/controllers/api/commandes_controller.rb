@@ -6,7 +6,7 @@ module Api
     def index
       commandes = Commande.includes(:article).all
       render json: commandes.as_json(
-        except: [:created_at, :updated_at],
+        except: [:updated_at],
         methods: [:nom_article, :article_prix_vente, :quantite]
       )
     end
