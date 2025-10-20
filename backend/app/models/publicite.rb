@@ -1,0 +1,2 @@
+class Publicite < ApplicationRecord
+end

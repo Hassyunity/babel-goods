@@ -1,0 +1,190 @@
+/* === CONTAINER PRINCIPAL === */
+.commandes-container {
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #fefce8, #fff);
+  min-height: 100vh;
+  border-radius: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #1e1e1e;
+}
+
+/* === HEADER === */
+.commandes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #facc15;
+  padding-bottom: 1rem;
+}
+
+.commandes-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.create-btn {
+  background: linear-gradient(135deg, #facc15, #eab308);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #1e1e1e;
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+}
+
+.create-btn:hover {
+  background: linear-gradient(135deg, #fbbf24, #facc15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(250, 204, 21, 0.5);
+}
+
+/* === TABLE === */
+.commandes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.commandes-table th,
+.commandes-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.commandes-table th {
+  background: #fef9c3;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.commandes-table tr:hover {
+  background-color: #fefce8;
+  transition: 0.2s ease;
+}
+
+/* === ETATS COLORÉS === */
+.etat {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 🟡 Commandé */
+.etat.commandé {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #facc15;
+}
+
+/* 🔵 Livraison */
+.etat.livraison {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #3b82f6;
+}
+
+/* 🟢 Versement */
+.etat.versement {
+  background-color: #bbf7d0;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+/* 🔴 Annulé */
+.etat.annulé {
+  background-color: #fecaca;
+  color: #7f1d1d;
+  border: 1px solid #ef4444;
+}
+
+/* ⚫ Archivé */
+.etat.archivé {
+  background-color: #e5e7eb;
+  color: #374151;
+  border: 1px solid #9ca3af;
+}
+
+/* === BOUTONS D’ACTION === */
+.btn-view,
+.btn-edit,
+.btn-delete {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-view:hover {
+  transform: scale(1.2);
+  color: #3b82f6;
+}
+
+.btn-edit:hover {
+  transform: scale(1.2);
+  color: #f59e0b;
+}
+
+.btn-delete:hover {
+  transform: scale(1.2);
+  color: #ef4444;
+}
+
+/* === TEXTE VIDE === */
+.no-orders {
+  color: #6b7280;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .commandes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .commandes-table {
+    font-size: 0.9rem;
+  }
+
+  .commandes-table th,
+  .commandes-table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .commandes-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .etat {
+    font-size: 0.8rem;
+  }
+}

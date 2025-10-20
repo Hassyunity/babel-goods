@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_19_071659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "archives_commandes", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.string "nom_personne"
+    t.string "adresse_livraison"
+    t.string "province"
+    t.decimal "prix"
+    t.string "telephone"
+    t.string "etat"
+    t.text "remarque"
+    t.integer "nombre_articles"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_archives_commandes_on_article_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "nom", null: false
@@ -23,6 +38,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
     t.text "remarque"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "reste", default: 0, null: false
+    t.decimal "total_ventes", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "image"
   end
 
   create_table "commandes", force: :cascade do |t|
@@ -36,7 +54,32 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
     t.text "remarque"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "nombre_articles", default: 1, null: false
     t.index ["article_id"], name: "index_commandes_on_article_id"
+  end
+
+  create_table "expeditions", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extras", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "publicites", force: :cascade do |t|
+    t.decimal "prix"
+    t.datetime "date_creation"
+    t.text "remarque"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,5 +91,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_185643) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "archives_commandes", "articles"
   add_foreign_key "commandes", "articles"
 end
