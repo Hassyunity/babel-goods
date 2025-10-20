@@ -1,6 +1,6 @@
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
@@ -11,10 +11,13 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { useEffect, useState } from "react";
 import "./chart.css";
 
 const Graph = () => {
-  // 📈 Données ventes mensuelles
+  const [articlesData, setArticlesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const ventesData = [
     { mois: "Janv", ventes: 120 },
     { mois: "Févr", ventes: 180 },
@@ -24,28 +27,38 @@ const Graph = () => {
     { mois: "Juin", ventes: 280 },
   ];
 
-  // 🍩 Données stock par article
-  const articlesData = [
-    { name: "Casques", value: 80 },
-    { name: "Hoddie", value: 120 },
-    { name: "Guitare", value: 60 },
-    { name: "Gourde colorée", value: 45 },
-    { name: "BLACKPINK", value: 20 },
-  ];
+  const COLORS = ["#FACC15", "#FDBA74", "#60A5FA", "#34D399", "#F472B6", "#A78BFA"];
 
-  // 🎨 Palette de couleurs distinctes
-  const COLORS = ["#FACC15", "#FDBA74", "#60A5FA", "#34D399", "#F472B6"];
+  useEffect(() => {
+    fetch("http://localhost:3000/api/articles/stocks")
+      .then((res) => {
+        if (!res.ok) throw new Error(`Erreur serveur ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("✅ Données reçues :", data);
+        setArticlesData(Array.isArray(data) ? data : []);
+      })
+      .catch((error) => console.error("❌ Erreur chargement données :", error))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <section className="charts-section">
-      {/* 📈 Graphique de gauche — Ventes mensuelles */}
+      {/* === 📊 Ventes mensuelles === */}
       <div className="chart-card large">
-        <h3>📈 Ventes mensuelles</h3>
+        <h3>📊 Ventes mensuelles</h3>
         <ResponsiveContainer width="100%" height={320}>
-          <LineChart data={ventesData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-            <XAxis dataKey="mois" tick={{ fill: "#1e1e1e" }} />
-            <YAxis tick={{ fill: "#1e1e1e" }} />
+          <AreaChart data={ventesData} margin={{ top: 20, right: 20, bottom: 0, left: 0 }}>
+            <defs>
+              <linearGradient id="colorVentes" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#FACC15" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#FACC15" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid stroke="#e5e7eb" strokeOpacity={0.9} strokeWidth={3} />
+            <XAxis dataKey="mois" stroke="#000" />
+            <YAxis stroke="#000" />
             <Tooltip
               contentStyle={{
                 backgroundColor: "#fff",
@@ -53,48 +66,47 @@ const Graph = () => {
                 borderRadius: "8px",
               }}
             />
-            <Line
+            <Area
               type="monotone"
               dataKey="ventes"
               stroke="#FACC15"
-              strokeWidth={4}
-              dot={{ r: 6, fill: "#FACC15", stroke: "#fff", strokeWidth: 2 }}
-              activeDot={{ r: 8 }}
+              fillOpacity={1}
+              fill="url(#colorVentes)"
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </div>
 
-      {/* 🍩 Graphique de droite — Répartition du stock */}
+      {/* === 🍩 Répartition du stock === */}
       <div className="chart-card large">
         <h3>🍩 Répartition du stock</h3>
-        <ResponsiveContainer width="100%" height={320}>
-          <PieChart>
-            <Pie
-              data={articlesData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={120}
-              innerRadius={60}
-              paddingAngle={4}
-              label={({ name, value }) => `${name} (${value})`}
-            >
-              {articlesData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#fff",
-                border: "1px solid #facc15",
-                borderRadius: "8px",
-              }}
-            />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
+        {loading ? (
+          <p>Chargement des données...</p>
+        ) : Array.isArray(articlesData) && articlesData.length > 0 ? (
+          <ResponsiveContainer width="100%" height={320}>
+            <PieChart>
+              <Pie
+                data={articlesData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={120}
+                innerRadius={60}
+                paddingAngle={4}
+                label={({ name, value }) => `${name} (${value})`}
+              >
+                {articlesData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              {/* <Legend /> */}
+            </PieChart>
+          </ResponsiveContainer>
+        ) : (
+          <p>Aucune donnée disponible.</p>
+        )}
       </div>
     </section>
   );

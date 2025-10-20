@@ -1,93 +1,139 @@
+/* === CONTAINER PRINCIPAL === */
 .commandes-container {
-  padding: 2rem;
-  background-color: #fafafa;
-  min-height: 50vh;
-  border: 2px solid #f59e0b;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #fefce8, #fff);
+  min-height: 100vh;
+  border-radius: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #1e1e1e;
 }
 
+/* === HEADER === */
 .commandes-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #facc15;
+  padding-bottom: 1rem;
 }
 
 .commandes-header h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #1f2937;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .create-btn {
-  background-color: #facc15;
+  background: linear-gradient(135deg, #facc15, #eab308);
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.5rem;
   font-weight: 600;
-  border-radius: 8px;
+  font-size: 1rem;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  color: #1e1e1e;
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
 }
 
 .create-btn:hover {
-  background-color: #eab308;
+  background: linear-gradient(135deg, #fbbf24, #facc15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(250, 204, 21, 0.5);
 }
 
+/* === TABLE === */
 .commandes-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .commandes-table th,
 .commandes-table td {
-  padding: 12px 16px;
+  padding: 14px 18px;
   text-align: left;
   border-bottom: 1px solid #f3f4f6;
 }
 
 .commandes-table th {
-  background-color: #f9fafb;
-  color: #374151;
-  font-weight: 600;
+  background: #fef9c3;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .commandes-table tr:hover {
-  background-color: #fef9c3;
+  background-color: #fefce8;
+  transition: 0.2s ease;
 }
 
+/* === ETATS COLORÉS === */
 .etat {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
   font-size: 0.9rem;
+  text-transform: capitalize;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
+/* 🟡 Commandé */
 .etat.commandé {
-  background-color: #fde68a;
+  background-color: #fef3c7;
   color: #92400e;
+  border: 1px solid #facc15;
 }
 
-.etat.livré {
+/* 🔵 Livraison */
+.etat.livraison {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #3b82f6;
+}
+
+/* 🟢 Versement */
+.etat.versement {
   background-color: #bbf7d0;
-  color: #166534;
+  color: #065f46;
+  border: 1px solid #10b981;
 }
 
+/* 🔴 Annulé */
 .etat.annulé {
   background-color: #fecaca;
   color: #7f1d1d;
+  border: 1px solid #ef4444;
 }
+
+/* ⚫ Archivé */
+.etat.archivé {
+  background-color: #e5e7eb;
+  color: #374151;
+  border: 1px solid #9ca3af;
+}
+
+/* === BOUTONS D’ACTION === */
 .btn-view,
 .btn-edit,
 .btn-delete {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1rem;
-  margin-right: 4px;
-  transition: transform 0.2s;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .btn-view:hover {
@@ -105,8 +151,40 @@
   color: #ef4444;
 }
 
+/* === TEXTE VIDE === */
 .no-orders {
   color: #6b7280;
   text-align: center;
-  margin-top: 2rem;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .commandes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .commandes-table {
+    font-size: 0.9rem;
+  }
+
+  .commandes-table th,
+  .commandes-table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .commandes-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .etat {
+    font-size: 0.8rem;
+  }
 }

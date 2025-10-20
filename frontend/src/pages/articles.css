@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+} */
+
+/* === PAGE === */
+.articles-page {
+  /* background: url('https://images.unsplash.com/photo-1495195129352-aeb325a55b65?auto=format&fit=crop&w=1776&q=80')
+    no-repeat center center fixed; */
+  /* background-size: cover; */
+  background-color: #cfcfcf;
+  min-height: 100vh;
+  color: #1d1c20;
+}
+
+.loading {
+  text-align: center;
+  padding-top: 100px;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+/* === HEADER === */
+#header {
+  margin: 40px auto;
+  text-align: center;
+}
+
+#header h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+}
+
+#header p {
+  font-size: 1.4rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* === GRILLE === */
+.container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding: 40px 20px;
+}
+
+/* === CARTE === */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin-right: 8px;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+/* IMAGE */
+.card-image {
+  width: 40vh;
+  height: 40vh;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.08);
+}
+
+/* TEXTE */
+.card-text {
+  background-color: #1d1c20;
+  color: #fff;
+  padding: 25px;
+  height: auto;
+  width: 35vh;
+  margin: -30px auto -50px;
+  border-radius: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-meal-type {
+  font-style: italic;
+  color: #cfcfcf;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.card-body {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #fff;
+}
+.card-status {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #facc15;
+}
+
+/* PRIX */
+.card-price {
+  width: 110px;
+  height: 110px;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 5vh;
+  margin-top: -50px;  
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-price {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
+  .card-image,
+  .card-text {
+    width: 100%;
+  }
+}

@@ -13,7 +13,9 @@ module Api
 
     # GET /api/commandes/:id
     def show
-      render json: @commande.as_json(include: { article: { only: [:nom, :prix_vente] } })
+      render json: @commande.as_json(
+        include: { article: { only: [:nom, :prix_vente] } }
+      )
     end
 
     # POST /api/commandes
@@ -48,7 +50,17 @@ module Api
     end
 
     def commande_params
-      params.require(:commande).permit(:article_id, :nom_personne, :adresse_livraison, :province, :prix, :telephone, :etat, :remarque)
+      params.require(:commande).permit(
+        :article_id,
+        :nom_personne,
+        :adresse_livraison,
+        :province,
+        :prix,
+        :telephone,
+        :etat,
+        :remarque,
+        :nombre_articles
+      )
     end
   end
 end

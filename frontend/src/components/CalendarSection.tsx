@@ -42,36 +42,52 @@ const CalendarSection = () => {
     return orders.filter((o) => o.created_at.split("T")[0] === dateString).length;
   };
 
-  // 📄 Fonction pour générer le PDF
+    // 📄 Fonction pour générer le PDF en style post-it vert
   const handleDownloadPDF = (order: Commande) => {
-    const doc = new jsPDF();
+    // ✅ Taille post-it : environ 8cm x 8cm
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: [80, 80],
+    });
 
+    // === Fond vert clair type post-it ===
+    doc.setFillColor(190, 255, 190);
+    doc.rect(0, 0, 80, 80, "F"); // Remplir tout le fond
+
+    // === Titre ===
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
+    doc.setTextColor(0, 0, 0); // Texte noir
+    doc.setFontSize(14);
 
+    // === Infos principales ===
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
-    const lineHeight = 10;
-    let y = 40;
+    doc.setFontSize(10);
+
+    const lineHeight = 6;
+    let y = 25;
 
     const infos = [
       { label: "Nom", value: order.nom_personne },
       { label: "Adresse", value: order.adresse_livraison },
-      { label: "Province", value: order.province },
       { label: "Téléphone", value: order.telephone },
       { label: "Prix total", value: `${order.prix.toLocaleString("fr-FR")} Ar` },
     ];
 
     infos.forEach((info) => {
-      doc.text(`${info.label} : ${info.value}`, 20, y);
+      doc.text(`${info.label} : ${info.value}`, 8, y);
       y += lineHeight;
     });
 
-    doc.setDrawColor(250, 204, 21);
-    doc.line(20, 30, 190, 30);
+    // === Ligne décorative en bas ===
+    doc.setDrawColor(0, 80, 0);
+    doc.setLineWidth(1);
+    doc.line(5, 75, 75, 75);
 
+    // === Sauvegarde ===
     doc.save(`commande_${order.id}_${order.nom_personne}.pdf`);
   };
+
 
   return (
     <section className="calendar-section">

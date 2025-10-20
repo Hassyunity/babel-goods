@@ -16,7 +16,7 @@
 /* === CALENDRIER === */
 .calendar-left {
   flex: 1;
-  background: #ffffff;
+  background: linear-gradient(180deg, #f9fafb 0%, #e5e7eb 100%);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
@@ -86,7 +86,7 @@
 /* === LISTE DES COMMANDES === */
 .calendar-right {
   flex: 1.2;
-  background: #fff;
+  background: linear-gradient(180deg, #f9fafb 0%, #e5e7eb 100%);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);

@@ -4,8 +4,7 @@ module Api
 
     # GET /api/articles
     def index
-      articles = Article.all
-      render json: articles
+      render json: Article.all
     end
 
     # GET /api/articles/:id
@@ -16,6 +15,8 @@ module Api
     # POST /api/articles
     def create
       article = Article.new(article_params)
+      article.reste ||= article.quantite
+
       if article.save
         render json: article, status: :created
       else
@@ -25,6 +26,13 @@ module Api
 
     # PATCH/PUT /api/articles/:id
     def update
+      # ⚙️ Si la quantité change sans mise à jour explicite du reste,
+      # on ajuste automatiquement le reste
+      if params[:article]&.key?(:quantite) && !params[:article].key?(:reste)
+        difference = params[:article][:quantite].to_i - @article.quantite.to_i
+        params[:article][:reste] = @article.reste.to_i + difference
+      end
+
       if @article.update(article_params)
         render json: @article
       else
@@ -38,6 +46,11 @@ module Api
       head :no_content
     end
 
+    def stocks
+      articles = Article.select(:nom, :reste)
+      render json: articles.map { |a| { name: a.nom, value: a.reste } }
+    end
+
     private
 
     def set_article
@@ -45,7 +58,10 @@ module Api
     end
 
     def article_params
-      params.require(:article).permit(:nom, :prix_initiale, :prix_vente, :quantite, :status, :remarque)
+      params.require(:article).permit(
+        :nom, :prix_initiale, :prix_vente,
+        :quantite, :reste, :status, :remarque
+      )
     end
   end
 end

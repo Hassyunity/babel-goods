@@ -14,6 +14,7 @@ interface Commande {
   article_id: number;
   nom_article?: string;
   nom_personne: string;
+  nombre_articles: number;
   adresse_livraison: string;
   province: string;
   prix: number;
@@ -39,6 +40,7 @@ const Commandes = () => {
   const [form, setForm] = useState<Commande>({
     article_id: 0,
     nom_personne: "",
+    nombre_articles: 1,
     adresse_livraison: "",
     province: "",
     prix: 0,
@@ -73,6 +75,7 @@ const Commandes = () => {
       setForm({
         article_id: 0,
         nom_personne: "",
+        nombre_articles: 1,
         adresse_livraison: "",
         province: "",
         prix: 0,
@@ -136,6 +139,7 @@ const Commandes = () => {
               <th>Article</th>
               <th>Client</th>
               <th>Adresse</th>
+              <th>Nombre d'articles</th>
               <th>Province</th>
               <th>Prix (Ar)</th>
               <th>Téléphone</th>
@@ -149,6 +153,7 @@ const Commandes = () => {
                 <td>{c.nom_article}</td>
                 <td>{c.nom_personne}</td>
                 <td>{c.adresse_livraison}</td>
+                <td>{c.nombre_articles}</td>
                 <td>{c.province}</td>
                 <td>{c.prix.toLocaleString()}</td>
                 <td>{c.telephone}</td>
@@ -192,6 +197,16 @@ const Commandes = () => {
               />
 
               <input
+                type="number"
+                placeholder="Nombre d'articles"
+                min={1}
+                value={form.nombre_articles}
+                onChange={(e) =>
+                  setForm({ ...form, nombre_articles: Number(e.target.value) })
+                }
+              />
+
+              <input
                 type="text"
                 placeholder="Adresse de livraison"
                 value={form.adresse_livraison}
@@ -230,10 +245,17 @@ const Commandes = () => {
                 value={form.etat}
                 onChange={(e) => setForm({ ...form, etat: e.target.value })}
               >
-                <option value="commandé">Commandé</option>
-                <option value="livraison">Livraison</option>
+                <option value="commandé" disabled={form.etat === "versement"}>
+                  Commandé
+                </option>
+                <option value="livraison" disabled={form.etat === "versement"}>
+                  Livraison
+                </option>
                 <option value="versement">Versement</option>
-                <option value="annulé">Annulé</option>
+                <option value="annulé" disabled={form.etat === "versement"}>
+                  Annulé
+                </option>
+                <option value="archivé">Archivé</option>
               </select>
 
               <textarea

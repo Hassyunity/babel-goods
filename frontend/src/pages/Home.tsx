@@ -9,7 +9,7 @@ const Home = () => {
       <section className="brand-banner">
         <img
           src="/images/bg.png"
-          alt="Babel Shop - Marque"
+          alt="Babel Goods - Marque"
           className="brand-image"
         />
       </section>

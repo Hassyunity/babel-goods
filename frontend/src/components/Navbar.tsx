@@ -28,7 +28,7 @@ const Navbar = () => {
     // En-tête
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.text(`Babel Shop — Export ${type.toUpperCase()}`, 20, 20);
+    doc.text(`Babel Goods — Export ${type.toUpperCase()}`, 20, 20);
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     doc.text(`Généré le ${today}`, 20, 28);
@@ -122,7 +122,7 @@ const Navbar = () => {
         doc.setPage(i);
         doc.setFontSize(10);
         doc.text(
-          `© Babel Shop — ${today} | Page ${i}/${pageCount}`,
+          `© Babel Goods — ${today} | Page ${i}/${pageCount}`,
           20,
           doc.internal.pageSize.height - 10
         );
@@ -140,13 +140,13 @@ const Navbar = () => {
       {/* === GAUCHE === */}
       <div className="navbar-left">
         <img src="/logo.svg" alt="Babel Logo" className="navbar-logo" />
-        <span className="navbar-title">Babel Shop</span>
+        <span className="navbar-title">Babel Goods</span>
 
         <ul className="navbar-links">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/commandes">Commandes</Link></li>
           <li><Link to="/articles">Articles</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li><Link to="/apropos">À propos</Link></li>
         </ul>
       </div>
 
