@@ -84,7 +84,7 @@ Rails.application.configure do
   config.hosts << "babel-goods.onrender.com"
 
   # Facultatif (utile si ton frontend appelle cette API depuis un autre domaine)
-  config.hosts << "babel-goods-frontend.onrender.com"
+  config.hosts << "babel-goodsfr.onrender.com"
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
