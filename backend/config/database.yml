@@ -28,4 +28,3 @@ production:
   encoding: unicode
   pool: 10
   url: <%= ENV["DATABASE_URL"] %>
-
