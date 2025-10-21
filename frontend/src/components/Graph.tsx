@@ -8,8 +8,7 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  Legend,
+  Cell
 } from "recharts";
 import { useEffect, useState } from "react";
 import "./chart.css";
