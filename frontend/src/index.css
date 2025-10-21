@@ -1,18 +1,97 @@
-/* ========================== */
-/* 🌍 NORMALISATION GLOBALE   */
-/* ========================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+/* 🌍 RESET / NORMALISATION GLOBALE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
-  font-size: 16px; /* fixe 1rem = 16px */
+  font-size: 16px; /* base font-size stable entre navigateurs */
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--color-bg, #fffdf7);
-  color: var(--color-text, #1e1e1e);
+  background: #fffdf7;
+  color: #1e1e1e;
   line-height: 1.6;
-  margin: 0;
-  padding: 0;
+}
+
+/* === VARIABLES CSS === */
+:root {
+  --color-bg: #fffdf7;
+  --color-text: #1e1e1e;
+  --color-primary: #facc15;
+  --color-accent: #FDC0CC;
+  --color-light: #fff8c5;
+  --radius: 8px;
+
+  --font-xs: 0.875rem;   /* 14px */
+  --font-sm: 1rem;       /* 16px */
+  --font-md: 1.125rem;   /* 18px */
+  --font-lg: 1.25rem;    /* 20px */
+  --font-xl: 1.5rem;     /* 24px */
+}
+
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-accent);
+  border-bottom: 2px solid var(--color-primary);
+  padding: 1rem 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--font-md);
+  font-weight: 500;
+}
+
+/* === BOUTONS === */
+button {
+  font-family: inherit;
+  font-size: var(--font-sm);
+}
+
+/* === FORMULAIRES === */
+input, select, textarea {
+  font-family: inherit;
+  font-size: var(--font-sm);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+}
+
+/* === TITRES === */
+h1 { font-size: var(--font-xl); }
+h2 { font-size: var(--font-lg); }
+h3 { font-size: var(--font-md); }
+
+/* === RESPONSIVE === */
+@media (max-width: 1000px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .navbar-title {
+    font-size: var(--font-lg);
+  }
+
+  .export-btn {
+    font-size: var(--font-xs);
+  }
 }
