@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api", // URL de ton backend Rails
+  baseURL: import.meta.env.VITE_API_URL, // prend l’URL depuis .env
 });
 
 export default api;
