@@ -90,7 +90,7 @@ const Graph = () => {
           <ResponsiveContainer width="100%" height={320}>
             <PieChart>
               <Pie
-                data={articlesData}
+                data={articlesData as any}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
