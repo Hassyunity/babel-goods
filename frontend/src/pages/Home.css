@@ -1,14 +1,14 @@
 .home-container {
-  margin: 15px; /* marge générale autour du contenu */
+  margin: 10px; /* marge générale réduite pour un rendu plus compact */
 }
 
 /* === SECTION BANNIÈRE === */
 .brand-banner {
   position: relative;
-  height: 50vh; /* moitié de l’écran */
+  height: 45vh; /* légèrement réduit */
   border-radius: 12px;
   overflow: hidden;
-  margin: 0 15px; /* marges gauche/droite */
+  margin: 0 10px; /* marges gauche/droite réduites */
 }
 
 .brand-image {
@@ -27,25 +27,74 @@
   text-align: center;
   color: #1e1e1e;
   background: rgba(255, 255, 255, 0.6);
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem; /* padding réduit */
   border-radius: 12px;
   backdrop-filter: blur(4px);
 }
 
 .banner-overlay h1 {
-  font-size: 2rem;
+  font-size: 1.5rem; /* réduit pour modernité */
   color: #facc15;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem; /* marge réduite */
 }
 
 .banner-overlay p {
-  font-size: 1rem;
+  font-size: 0.875rem; /* réduit */
   font-weight: 500;
   color: #333;
+  margin: 0;
 }
 
 /* === CONTENU EN DESSOUS === */
 .home-content {
-  margin-top: 2rem;
+  margin-top: 1.5rem; /* réduit */
   text-align: center;
+  font-size: 0.875rem; /* harmonisé avec le style moderne */
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .brand-banner {
+    height: 35vh; /* réduit la hauteur sur mobile */
+    margin: 0 5px;
+  }
+
+  .banner-overlay {
+    padding: 0.8rem 1rem; /* padding réduit */
+  }
+
+  .banner-overlay h1 {
+    font-size: 1.25rem; /* titre plus petit */
+  }
+
+  .banner-overlay p {
+    font-size: 0.75rem; /* texte plus petit */
+  }
+
+  .home-content {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-banner {
+    height: 30vh;
+  }
+
+  .banner-overlay {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .banner-overlay h1 {
+    font-size: 1.1rem;
+  }
+
+  .banner-overlay p {
+    font-size: 0.7rem;
+  }
+
+  .home-content {
+    font-size: 0.7rem;
+  }
 }

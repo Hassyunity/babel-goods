@@ -1,61 +1,61 @@
 /* === PAGE À PROPOS === */
 .apropos-container {
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem; /* réduit padding */
   background-color: #fefefe;
   color: #1f2937;
   font-family: "Poppins", sans-serif;
-  line-height: 1.7;
+  line-height: 1.5; /* légèrement plus serré */
 }
 
 /* === SECTION HERO === */
 .hero {
   background: linear-gradient(135deg, #fef9c3, #fde68a);
   border: 2px solid #facc15;
-  border-radius: 16px;
-  padding: 3rem;
+  border-radius: 12px; /* réduit border-radius */
+  padding: 2rem; /* réduit padding */
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  margin-bottom: 3rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
 .hero h1 {
-  font-size: 2rem;
+  font-size: 1.6rem; /* réduit taille */
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: #1e1e1e;
 }
 
 .hero p {
-  font-size: 1.1rem;
+  font-size: 0.95rem; /* réduit taille */
   color: #374151;
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 /* === TITRES DES SECTIONS === */
 .apropos-container h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* réduit taille */
   color: #1e1e1e;
   font-weight: 700;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
   position: relative;
 }
 
 .apropos-container h2::after {
   content: "";
   display: block;
-  width: 60px;
-  height: 4px;
+  width: 50px; /* réduit largeur */
+  height: 3px; /* réduit hauteur */
   background: #facc15;
   border-radius: 2px;
-  margin-top: 6px;
+  margin-top: 4px; /* réduit margin */
 }
 
 /* === TEXTES === */
 .apropos-container p {
-  font-size: 1rem;
+  font-size: 0.95rem; /* réduit taille */
   color: #4b5563;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* réduit margin */
 }
 
 /* === LISTE DES FONCTIONNALITÉS === */
@@ -67,11 +67,11 @@
 .features li {
   background: #fffbea;
   border: 1px solid #fef08a;
-  border-radius: 10px;
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.6rem;
+  border-radius: 8px; /* réduit border-radius */
+  padding: 0.6rem 0.8rem; /* réduit padding */
+  margin-bottom: 0.5rem; /* réduit margin */
   font-weight: 500;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
 }
 
 /* === LIENS === */
@@ -88,27 +88,6 @@ a:hover {
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .hero {
-    padding: 2rem;
-  }
-
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-
-  .apropos-container h2 {
-    font-size: 1.3rem;
-  }
-
-  .apropos-container p {
-    font-size: 0.95rem;
-  }
-}
-@media (max-width: 480px) {
-  .apropos-container {
-    padding: 2rem 1rem;
-  }
-
-  .hero {
     padding: 1.5rem;
   }
 
@@ -117,10 +96,32 @@ a:hover {
   }
 
   .apropos-container h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .apropos-container p {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .apropos-container {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.2rem;
+  }
+
+  .apropos-container h2 {
+    font-size: 1rem;
+  }
+
+  .apropos-container p {
+    font-size: 0.85rem;
   }
 }

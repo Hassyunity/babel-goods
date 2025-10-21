@@ -3,9 +3,9 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  gap: 2.5rem;
-  margin: 4rem 0;
-  padding: 0 15px;
+  gap: 1.5rem; /* réduit l’écart */
+  margin: 2rem 0;
+  padding: 0 10px;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -15,15 +15,16 @@
   flex: 1;
   background: linear-gradient(145deg, #ffffff, #f4f4f4);
   border: 2px solid #facc15;
-  border-radius: 18px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem; /* réduit padding */
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.08),
-    inset 0 0 10px rgba(250, 204, 21, 0.15);
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    inset 0 0 8px rgba(250, 204, 21, 0.15);
   transition: all 0.3s ease;
   font-family: "Poppins", sans-serif;
   position: relative;
   overflow: hidden;
+  font-size: 0.875rem; /* taille texte moderne */
 }
 
 /* === Effet lumineux subtil === */
@@ -47,18 +48,18 @@
   z-index: 1;
 }
 
-/* === Taille === */
+/* === Taille spécifique === */
 .chart-card.large {
-  height: 420px;
-  font-size: 1.2rem;
+  height: 350px; /* réduit hauteur */
+  font-size: 0.9rem; /* taille texte contenu */
 }
 
 /* === Hover dynamique === */
 .chart-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.12),
-    inset 0 0 15px rgba(250, 204, 21, 0.2);
+    0 10px 22px rgba(0, 0, 0, 0.12),
+    inset 0 0 12px rgba(250, 204, 21, 0.2);
   background: linear-gradient(145deg, #fffef5, #f9f7e8);
   transition: 0.3s ease;
 }
@@ -66,12 +67,13 @@
 /* === TITRE === */
 .chart-card h3 {
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1rem; /* réduit marge */
   color: #1e1e1e;
-  font-size: 1.4rem;
+  font-size: 1.1rem; /* réduit titre */
   font-weight: 700;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   text-shadow: 0 1px 2px rgba(250, 204, 21, 0.2);
+  line-height: 1.2;
 }
 
 /* === GRAPHIQUE === */
@@ -84,21 +86,23 @@
 .recharts-text {
   fill: #1e293b;
   font-weight: 500;
+  font-size: 0.8rem !important; /* force taille moderne */
 }
 
 .recharts-tooltip-item-name {
   color: #1e1e1e !important;
   font-weight: 600;
+  font-size: 0.8rem !important; /* force taille */
 }
 
 .recharts-tooltip-wrapper {
   z-index: 10;
 }
 
-/* === LÉGENDE === */
 .recharts-legend-item-text {
   color: #1e1e1e;
   font-weight: 600;
+  font-size: 0.8rem !important; /* force taille */
 }
 
 /* === RESPONSIVE === */
@@ -106,10 +110,40 @@
   .charts-section {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
 
   .chart-card {
     width: 95%;
     height: auto;
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .chart-card.large {
+    height: auto;
+    font-size: 0.85rem;
+  }
+
+  .chart-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    font-size: 0.75rem;
+    padding: 0.8rem;
+  }
+
+  .chart-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .recharts-text,
+  .recharts-tooltip-item-name,
+  .recharts-legend-item-text {
+    font-size: 0.7rem !important;
   }
 }
