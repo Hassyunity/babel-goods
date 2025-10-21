@@ -13,8 +13,13 @@ import {
 import { useEffect, useState } from "react";
 import "./chart.css";
 
+interface ArticleData {
+  name: string;
+  value: number;
+}
+
 const Graph = () => {
-  const [articlesData, setArticlesData] = useState([]);
+  const [articlesData, setArticlesData] = useState<ArticleData[]>([]);
   const [loading, setLoading] = useState(true);
 
   const ventesData = [
@@ -95,12 +100,11 @@ const Graph = () => {
                 paddingAngle={4}
                 label={({ name, value }) => `${name} (${value})`}
               >
-                {articlesData.map((entry, index) => (
+                {articlesData.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip />
-              {/* <Legend /> */}
             </PieChart>
           </ResponsiveContainer>
         ) : (

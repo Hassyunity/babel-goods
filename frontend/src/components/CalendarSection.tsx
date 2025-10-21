@@ -19,10 +19,9 @@ interface Commande {
 }
 
 const CalendarSection = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [orders, setOrders] = useState<Commande[]>([]);
 
-  // 🧩 Charger les données depuis ton backend Rails
   useEffect(() => {
     fetch("http://localhost:3000/api/commandes")
       .then((res) => res.json())
@@ -30,37 +29,33 @@ const CalendarSection = () => {
       .catch((err) => console.error("Erreur de chargement des commandes :", err));
   }, []);
 
-  // 🎯 Formater la date sélectionnée
-  const formattedDate = selectedDate.toISOString().split("T")[0];
+  const formattedDate = selectedDate
+    ? selectedDate.toISOString().split("T")[0]
+    : "";
+
   const ordersOfTheDay = orders.filter(
     (o) => o.created_at.split("T")[0] === formattedDate
   );
 
-  // 🔢 Compter les commandes par date
   const getOrderCountForDate = (date: Date) => {
     const dateString = date.toISOString().split("T")[0];
     return orders.filter((o) => o.created_at.split("T")[0] === dateString).length;
   };
 
-    // 📄 Fonction pour générer le PDF en style post-it vert
   const handleDownloadPDF = (order: Commande) => {
-    // ✅ Taille post-it : environ 8cm x 8cm
     const doc = new jsPDF({
       orientation: "portrait",
       unit: "mm",
       format: [80, 80],
     });
 
-    // === Fond vert clair type post-it ===
     doc.setFillColor(190, 255, 190);
-    doc.rect(0, 0, 80, 80, "F"); // Remplir tout le fond
+    doc.rect(0, 0, 80, 80, "F");
 
-    // === Titre ===
     doc.setFont("helvetica", "bold");
-    doc.setTextColor(0, 0, 0); // Texte noir
+    doc.setTextColor(0, 0, 0);
     doc.setFontSize(14);
 
-    // === Infos principales ===
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
 
@@ -79,23 +74,21 @@ const CalendarSection = () => {
       y += lineHeight;
     });
 
-    // === Ligne décorative en bas ===
     doc.setDrawColor(0, 80, 0);
     doc.setLineWidth(1);
     doc.line(5, 75, 75, 75);
 
-    // === Sauvegarde ===
     doc.save(`commande_${order.id}_${order.nom_personne}.pdf`);
   };
 
-
   return (
     <section className="calendar-section">
-      {/* === GAUCHE : CALENDRIER === */}
       <div className="calendar-left">
         <h2>📅 Sélectionnez une date</h2>
         <Calendar
-          onChange={setSelectedDate}
+          onChange={(value) => {
+            if (value instanceof Date) setSelectedDate(value);
+          }}
           value={selectedDate}
           className="custom-calendar"
           tileContent={({ date }) => {
@@ -107,16 +100,17 @@ const CalendarSection = () => {
         />
       </div>
 
-      {/* === DROITE : DÉTAILS DES COMMANDES === */}
       <div className="calendar-right">
         <h2>
           Commandes du{" "}
-          {selectedDate.toLocaleDateString("fr-FR", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
+          {selectedDate
+            ? selectedDate.toLocaleDateString("fr-FR", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })
+            : "aucune date"}
         </h2>
 
         {ordersOfTheDay.length > 0 ? (
