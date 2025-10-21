@@ -39,6 +39,6 @@ Rails.application.configure do
   end
 
   # Autorise aussi ton domaine Render en dev (utile si tu testes ton backend en ligne)
-  config.hosts << "babel-goods.onrender.com"
-  config.hosts << "babel-goods-frontend.onrender.com"
+  config.hosts << "babel-goods-api.onrender.com"
+  config.hosts << "babel-goods-fr.onrender.com"
 end
